@@ -64,16 +64,3 @@ python claude_client.py \
   --purpose classification \
   --prompt-file ./inputs/sample.txt
 ```
-
-## 3.4 인증
-
-> **인증은 반드시 `Authorization: Bearer` 헤더를 사용합니다.**
-> `x-api-key` 헤더를 쓰면 `401`이 반환됩니다. (Anthropic 네이티브 API 습관으로 `x-api-key`를 쓰기 쉬우니 주의하세요.)
-
-```bash
-curl -X POST \
-  https://adb-<workspace-id>.<shard>.azuredatabricks.net/ai-gateway/anthropic/v1/messages \
-  -H "Authorization: Bearer $DATABRICKS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{ "model": "system.ai.claude-haiku-4-5", "max_tokens": 256, "messages": [ ... ] }'
-```
