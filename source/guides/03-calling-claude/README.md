@@ -67,8 +67,6 @@ python claude_client.py \
 
 ## 3.4 Fallback 구성
 
-> **참고** — 이 절은 이번 검증에서 직접 구성하지 않았으며, [Azure Databricks 공식 문서](https://learn.microsoft.com/ko-kr/azure/databricks/ai-gateway/configure-ai-gateway-endpoints) 기준으로 정리한 내용입니다.
-
 하나의 엔드포인트에 여러 모델(served entity)을 올려두면, 요청이 실패했을 때 다음 모델로 자동 재시도하도록 구성할 수 있습니다. AI Gateway 섹션에서 **Enable fallbacks**를 선택해 활성화합니다.
 
 ### 동작 규칙
