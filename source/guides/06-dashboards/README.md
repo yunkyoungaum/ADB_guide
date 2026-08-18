@@ -4,13 +4,13 @@
 
 ## 6.1 기본 제공 대시보드 — Workspace AI Gateway Usage Analytics
 
-Databricks는 `Workspace AI Gateway Usage Analytics`라는 대시보드를 기본 제공합니다. 별도 배포 없이 바로 쓸 수 있지만 다음과 같은 **한계**가 있습니다.
+Databricks는 `Workspace AI Gateway Usage Analytics`라는 대시보드를 기본 제공합니다. 별도 배포 없이 AI Gateway 트래픽을 바로 볼 수 있지만 다음과 같은 **한계**가 있습니다.
 
-- **gateway 트래픽만** 표시합니다. serving 라우트로 부른 호출은 나타나지 않습니다(4장의 배타성 때문).
 - `workspace_id`로 필터링됩니다.
 - 기본 조회 기간이 **7일**입니다. 초기 검증 직후에는 데이터가 적어 빈 화면처럼 보일 수 있습니다.
+- 비용(청구) 정보는 포함되지 않습니다.
 
-> serving 라우트 사용량과 비용 귀속까지 한 화면에서 보려면 커스텀 대시보드가 필요합니다.
+> 사용량과 비용 귀속까지 한 화면에서 보려면 커스텀 대시보드가 필요합니다.
 
 ## 6.2 커스텀 대시보드를 코드로 배포하기
 
@@ -50,11 +50,11 @@ curl -X POST \
 
 | # | 위젯 | 데이터 소스 | 설명 |
 | --- | --- | --- | --- |
-| 1 | 라우트별 호출 수 | `endpoint_usage` + `ai_gateway.usage` | serving/gateway 호출량 비교 |
+| 1 | 시간대별 호출 수 | `system.ai_gateway.usage` | 요청량 추이 |
 | 2 | 모델별 지연 | `system.ai_gateway.usage` | `haiku`/`sonnet`/`opus` 평균 지연 |
-| 3 | 팀별 귀속 | `system.serving.endpoint_usage` | `usage_context.team` 롤업 |
+| 3 | 상태 코드 분포 | `system.ai_gateway.usage` | `200` / `429` / `5xx` 비율 |
 | 4 | 모델별 비용(목록가) | `billing.usage` + `list_prices` | list_prices 조인 기반 |
-| 5 | 토큰 추이 | 두 요청 단위 테이블 | 입력/출력 토큰 시계열 |
+| 5 | 토큰 추이 | `system.ai_gateway.usage` | 입력/출력 토큰 시계열 |
 
 ## 6.5 스크린샷 위치 표시자
 
