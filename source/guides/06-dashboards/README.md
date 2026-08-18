@@ -44,7 +44,7 @@ curl -X POST \
   -H "Authorization: Bearer $DATABRICKS_TOKEN"
 ```
 
-## 6.4 위젯 구성 (5종)
+## 6.3 위젯 구성 (5종)
 
 커스텀 대시보드에 배치한 위젯입니다.
 
@@ -56,7 +56,7 @@ curl -X POST \
 | 4 | 모델별 비용(목록가) | `billing.usage` + `list_prices` | list_prices 조인 기반 |
 | 5 | 토큰 추이 | `system.ai_gateway.usage` | 입력/출력 토큰 시계열 |
 
-## 6.5 스크린샷 위치 표시자
+## 6.4 스크린샷 위치 표시자
 
 게시 시 다음 위치에 실제 스크린샷을 삽입하세요.
 
