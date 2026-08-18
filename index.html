@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Azure Databricks Claude 모델 운영 가이드</title>
+<title>[DRAFT] Azure Databricks Claude 모델 운영 가이드</title>
 <script>
   (() => {
     const param = new URLSearchParams(window.location.search).get("scoutTheme");
@@ -153,6 +153,7 @@ tr:nth-child(even) td { background: var(--cp-accent-soft); }
 .chk li { padding-left: 26px; position: relative; }
 .chk li::before { content: "☐"; position: absolute; left: 0; color: var(--cp-accent); font-size: 15px; }
 .topbtn { position: fixed; bottom: 24px; right: 24px; background: var(--cp-accent); color: var(--cp-accent-fg); border: none; border-radius: 50%; width: 46px; height: 46px; font-size: 20px; cursor: pointer; box-shadow: var(--cp-shadow); }
+.draft-banner { position: sticky; top: 0; z-index: 50; background: var(--cp-accent); color: var(--cp-accent-fg); text-align: center; font-size: 13.5px; font-weight: 600; padding: 7px 16px; letter-spacing: .02em; }
 @media (max-width: 900px) {
   aside { display: none; }
   main { padding: 24px 18px 80px; }
@@ -160,6 +161,7 @@ tr:nth-child(even) td { background: var(--cp-accent-soft); }
 </style>
 </head>
 <body>
+<div class="draft-banner">⚠️ DRAFT — 리뷰용 초안 문서입니다. 조직 표준 확정 전까지 그대로 적용하지 마세요.</div>
 <div class="layout">
 <aside>
   <div class="brand">Azure Databricks · Claude 운영</div>
