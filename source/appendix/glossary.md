@@ -22,3 +22,6 @@ Databricks 사용량·과금의 기본 단위. 처리량을 정규화한 값으�
 
 **route (라우트)**
 Claude 모델을 호출하는 경로 구분. `serving`(`/serving-endpoints`, `databricks-claude-*`)과 `gateway`(`/ai-gateway`, `system.ai.claude-*`) 두 가지가 있으며, **라우트가 사용량 기록 위치를 결정**합니다. 두 요청 단위 테이블은 배타적입니다.
+
+**fallback**
+엔드포인트에 올린 모델이 `429`/`5XX`로 실패하면 다음 served entity로 자동 재시도하는 AI Gateway 기능. External models 전용이며 최대 2개까지 지정할 수 있습니다. 트래픽 `0%` 모델은 fallback 전용으로 동작합니다.

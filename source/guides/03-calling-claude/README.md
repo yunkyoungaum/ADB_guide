@@ -64,3 +64,35 @@ python claude_client.py \
   --purpose classification \
   --prompt-file ./inputs/sample.txt
 ```
+
+## 3.4 Fallback 구성
+
+> **참고** — 이 절은 이번 검증에서 직접 구성하지 않았으며, [Azure Databricks 공식 문서](https://learn.microsoft.com/ko-kr/azure/databricks/ai-gateway/configure-ai-gateway-endpoints) 기준으로 정리한 내용입니다.
+
+하나의 엔드포인트에 여러 모델(served entity)을 올려두면, 요청이 실패했을 때 다음 모델로 자동 재시도하도록 구성할 수 있습니다. AI Gateway 섹션에서 **Enable fallbacks**를 선택해 활성화합니다.
+
+### 동작 규칙
+
+| 항목 | 내용 | 주의 |
+| --- | --- | --- |
+| 트리거 조건 | `429` 또는 `5XX` 응답 | 그 외 `4XX`는 fallback되지 않고 그대로 실패 |
+| 시도 순서 | 엔드포인트 생성·최종 수정 시 모델이 나열된 순서 | **트래픽 비율은 순서에 영향을 주지 않음** |
+| 최대 개수 | fallback 2개 (총 3개 엔티티 시도) | 모두 실패하면 요청 실패 |
+| 재시도 방식 | 각 엔티티를 순차적으로 1회씩 | 같은 엔티티를 반복 재시도하지 않음 |
+| 지원 대상 | External models 전용 | BYOK로 연결한 외부 공급자 모델 |
+| 전제 조건 | 다른 모델에 트래픽 비율을 먼저 할당 | 할당 전에는 활성화 불가 |
+
+트래픽 비율을 **`0%`**로 지정한 모델은 평상시에는 호출되지 않고 **fallback 전용**으로만 동작합니다. 평소 트래픽은 주 모델로 보내되 장애 시에만 예비 모델을 쓰고 싶을 때 이 방식을 사용합니다.
+
+```mermaid
+flowchart LR
+    R[요청] --> E3[Served entity 3]
+    E3 -->|200| OK[성공 · 기록]
+    E3 -->|429 / 5xx| E1[Served entity 1]
+    E1 -->|200| OK
+    E1 -->|429 / 5xx| E2[Served entity 2]
+    E2 -->|200| OK
+    E2 -->|429 / 5xx| F[요청 실패 · 기록]
+```
+
+> **⚠️ 모니터링 영향** — fallback이 발생하면 **첫 성공 시도 또는 마지막 실패 시도만** usage tracking·payload logging 테이블에 기록됩니다. 중간에 실패한 시도는 남지 않으므로, **클라이언트 호출 수와 시스템 테이블 행 수가 어긋날 수 있습니다**([4장](../04-usage-monitoring/README.md) 참조).
