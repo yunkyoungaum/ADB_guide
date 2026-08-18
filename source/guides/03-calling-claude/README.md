@@ -69,6 +69,17 @@ python claude_client.py \
 
 하나의 엔드포인트에 여러 모델(served entity)을 올려두면, 요청이 실패했을 때 다음 모델로 자동 재시도하도록 구성할 수 있습니다. AI Gateway 섹션에서 **Enable fallbacks**를 선택해 활성화합니다.
 
+> **⚠️ 제약 — `system.ai` 기본 model API에는 설정 불가**
+>
+> `system.ai` 스키마의 기본 제공 model API(예: `system.ai.databricks-claude-opus-5`)에는 **fallback과 traffic split을 설정할 수 없습니다.** Databricks가 소유한 서비스로 destination이 단일 모델에 고정되어 있어, AI Gateway → Models → 해당 모델 → **Routing** 탭에 들어가도 destination 추가 UI가 나타나지 않고 다음 안내만 표시됩니다.
+>
+> > *To configure fallbacks or traffic splits, create your own Model Service.*
+>
+> 두 기능은 다음 두 경로에서만 구성할 수 있습니다.
+>
+> - **사용자가 직접 생성한 model service** — 사이드바 **AI Gateway** → **Create**(또는 Catalog Explorer → 대상 스키마 → `Create` > `Service` > `Model service`)로 만든 뒤, 해당 서비스의 **Routing** 탭 → **Destinations**에서 백업 모델을 추가하고 우선순위를 지정합니다.
+> - **legacy serving endpoint** — 아래 표에서 설명하는 방식으로, Serving 엔드포인트의 AI Gateway 섹션에서 **Enable fallbacks**를 선택합니다.
+
 ### 동작 규칙
 
 | 항목 | 내용 | 주의 |
