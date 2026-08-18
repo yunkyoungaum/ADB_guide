@@ -12,24 +12,21 @@
 ## Unity Catalog / 서버리스
 
 - [ ] `SHOW CATALOGS`로 워크스페이스 ID 접미사가 붙은 실제 카탈로그 이름을 확인했다
-- [ ] 계정 콘솔에서 서버리스 기능을 활성화했다(UI 단계)
 - [ ] 서버리스 SQL 웨어하우스를 생성했다
 - [ ] 관리형 Delta 테이블 INSERT/SELECT가 성공한다
 
 ## 모델 호출
 
-- [ ] serving 라우트 호출이 `200`을 반환한다
-- [ ] gateway 라우트 호출이 `200`을 반환한다
+- [ ] AI Gateway 호출이 `200`을 반환한다
 - [ ] 인증은 `Authorization: Bearer`를 사용한다(`x-api-key` 아님)
-- [ ] gateway 모델 이름은 `system.ai.claude-*` 형식이다
+- [ ] 모델 이름은 `system.ai.claude-*` 형식이다
 - [ ] 토큰은 환경 변수로만 다루고, 프롬프트/응답 본문은 로그에 남기지 않는다
 
 ## 모니터링
 
 - [ ] 시스템 테이블 적재 지연을 감안해 충분히 대기한 뒤 조회했다
-- [ ] `system.serving.endpoint_usage`에 serving 트래픽이 적재되었다
-- [ ] `system.ai_gateway.usage`에 gateway 트래픽이 적재되었다
-- [ ] `usage_context.team`으로 팀별 귀속이 조회된다
+- [ ] `system.ai_gateway.usage`에 트래픽이 적재되었다
+- [ ] `latency_ms` / `ttfb_ms`가 정상 범위로 조회된다
 
 ## 비용
 
@@ -46,4 +43,5 @@
 ## 추론 테이블 (해당 시)
 
 - [ ] 추론 테이블이 조직 요건인지 확인했다
-- [ ] 요건이면 서버리스 제약(Access Connector 불가)을 인지하고 Hybrid 트랙으로 분기했다
+- [ ] 요건이면 external storage 카탈로그를 먼저 구성했다(default storage 미지원)
+- [ ] 커스텀 model service를 만들고 inference tables를 활성화했다
