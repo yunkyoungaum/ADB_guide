@@ -56,12 +56,15 @@ curl -X POST \
 | 4 | 모델별 비용(목록가) | `billing.usage` + `list_prices` | list_prices 조인 기반 |
 | 5 | 토큰 추이 | `system.ai_gateway.usage` | 입력/출력 토큰 시계열 |
 
-## 6.4 스크린샷 위치 표시자
+## 6.4 스크린샷
 
-게시 시 다음 위치에 실제 스크린샷을 삽입하세요.
+### 기본 AI Gateway 대시보드
 
-- 기본 대시보드: `![기본 AI Gateway 대시보드 화면](../.gitbook/assets/ai-gateway-default-dashboard.png)`
-- 커스텀 대시보드: `![커스텀 사용량 대시보드 화면](../.gitbook/assets/custom-usage-dashboard.png)`
+![기본 AI Gateway 대시보드 화면](../../screencapture/디폴트.png)
+
+### 커스텀 사용량 대시보드
+
+![커스텀 사용량 대시보드 화면](../../screencapture/커스텀이미지.png)
 
 > **확인 포인트**
 > - 커스텀 대시보드가 게시(`published`)되어 다른 사용자에게 보이는가?
