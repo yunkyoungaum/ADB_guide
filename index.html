@@ -170,6 +170,7 @@ main .doc blockquote {
 main .doc blockquote p:first-child { margin-top: 0; }
 main .doc blockquote p:last-child { margin-bottom: 0; }
 main .doc blockquote blockquote { border-left-color: var(--cp-border-strong); background: var(--cp-surface-soft); }
+main .doc img { display: block; max-width: 100%; height: auto; margin: 16px 0 24px; border: 1px solid var(--cp-border); }
 aside nav a.active { background: var(--cp-accent-soft); color: var(--cp-accent); font-weight: 600; }
 .docfoot { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--cp-border); font-size: 13px; color: var(--cp-text-soft); display: flex; gap: 16px; flex-wrap: wrap; }
 .docfoot a { text-decoration: none; }
@@ -230,6 +231,13 @@ function renderMarkdown(md) {
 
 function rewriteLinks(container, currentPath) {
   const baseDir = currentPath.slice(0, currentPath.lastIndexOf("/") + 1);
+  container.querySelectorAll("img[src]").forEach(img => {
+    const src = img.getAttribute("src");
+    if (!/^(https?:|data:|\/)/.test(src)) {
+      const resolved = new URL(src, "https://x/" + baseDir).pathname.slice(1);
+      img.setAttribute("src", SRC + resolved);
+    }
+  });
   container.querySelectorAll("a[href]").forEach(a => {
     const href = a.getAttribute("href");
     if (/^(https?:|mailto:|#)/.test(href)) {
