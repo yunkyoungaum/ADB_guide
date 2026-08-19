@@ -35,8 +35,15 @@
 | SQL warehouses API | 2.2 웨어하우스 생성 | [REST API 레퍼런스](https://docs.databricks.com/api/workspace/warehouses/create) |
 | Lakeview dashboards API | 6.2 대시보드 배포 | [REST API 레퍼런스](https://docs.databricks.com/api/workspace/lakeview/create) |
 
-## 가격
+## 네트워킹
 
+| 문서 | 본문 연관 | 링크 |
+| --- | --- | --- |
+| Deploy Azure Databricks in your Azure VNet (VNet injection) | 부록 C.3 | [Azure](https://learn.microsoft.com/azure/databricks/security/network/classic/vnet-inject) |
+| Private Link concepts | 부록 C.1 · C.2 · C.3 | [Azure](https://learn.microsoft.com/azure/databricks/security/network/concepts/privatelink-concepts) |
+| Configure private connectivity to Azure resources (NCC) | 부록 C.2 아웃바운드 | [Azure](https://learn.microsoft.com/azure/databricks/security/network/serverless-network-security/serverless-private-link) |
+
+## 가격
 | 문서 | 본문 연관 | 링크 |
 | --- | --- | --- |
 | Unity AI Gateway pricing | 3.5 (inference tables 과금) | [databricks.com](https://www.databricks.com/product/pricing/ai-gateway) |

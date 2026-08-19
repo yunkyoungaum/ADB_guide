@@ -9,4 +9,5 @@
 * [6. 대시보드 구성](guides/06-dashboards/README.md)
 * [부록 A. 추론 테이블과 외부 스토리지](appendix/inference-tables.md)
 * [부록 B. 검증 체크리스트](appendix/release-checklist.md)
+* [부록 C. 프라이빗 네트워크 배포](appendix/private-network.md)
 * [참고 문헌](appendix/references.md)
