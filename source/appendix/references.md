@@ -44,6 +44,7 @@
 | Configure private connectivity to Azure resources (NCC) | 부록 C.2 아웃바운드 | [Azure](https://learn.microsoft.com/azure/databricks/security/network/serverless-network-security/serverless-private-link) |
 
 ## 가격
+
 | 문서 | 본문 연관 | 링크 |
 | --- | --- | --- |
 | Unity AI Gateway pricing | 3.5 (inference tables 과금) | [databricks.com](https://www.databricks.com/product/pricing/ai-gateway) |
