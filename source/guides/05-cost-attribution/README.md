@@ -1,10 +1,13 @@
-# 5. 비용 분석과 귀속 (아직 작업중 - 참고하지마세요)
+# 5. 비용 분석과 귀속
 
 4장이 요청 단위 사용량을 다뤘다면, 이 장은 비용입니다. **`system.billing.usage`**에서 정확한 비용 계산을 수행합니다.
 
 ## 5.1 청구 테이블에서의 엔드포인트 이름
 
 `system.billing.usage`는 모델 사용량을 청구 단위로 집계합니다. 이때 엔드포인트 이름은 **`databricks-claude-*` 형식으로 정규화**됩니다. 즉 AI Gateway에서 `system.ai.claude-*`로 호출했더라도, 청구 테이블에서는 `databricks-claude-*`로 나타납니다.
+
+- **Tier_ANTHROPIC_MODEL_SERVING**: 실제 모델 추론 비용
+- **Tier_SERVERLESS_REAL_TIME_INFERENCE_Reion_**: 인프라 유지 비용
 
 ```sql
 SELECT
