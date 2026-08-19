@@ -1,6 +1,6 @@
 # Azure Databricks Claude 모델 운영 가이드
 
-실측 기반 Azure Databricks 서버리스 배포 · Claude 모델 호출(serving / gateway) · 사용량·비용 모니터링 가이드입니다.
+실무 중심 Azure Databricks 서버리스 배포 · Claude 모델 호출(serving / gateway) · 사용량·비용 모니터링 가이드입니다.
 
 ## 보기
 

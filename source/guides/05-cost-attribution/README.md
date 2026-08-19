@@ -21,7 +21,7 @@ ORDER BY total_dbu DESC;
 
 > **경고** — DBU 단가를 코드에 하드코딩하지 마세요. 반드시 `system.billing.list_prices`를 조인해서 계산합니다.
 
-실측 목록가는 **DBU당 약 `0.105` USD**였습니다. 일부 샘플 쿼리에 등장하는 `0.07`은 실제의 약 1/3만큼 **과소 계상**된 값입니다. 하드코딩된 단가를 그대로 쓰면 비용을 심각하게 낮게 추정하게 됩니다.
+DBU 목록가는 리전, SKU, 계약 및 조회 시점에 따라 달라질 수 있습니다. 비용 계산 시 `system.billing.list_prices`에서 현재 적용 단가를 조회하세요. 단가를 하드코딩하면 실제 비용과 차이가 발생할 수 있습니다.
 
 **올바른 방식 — list_prices 조인:**
 
@@ -43,7 +43,7 @@ ORDER BY list_cost_usd DESC;
 
 ## 5.3 SKU는 티어에 따라 다르다
 
-비용이 붙는 SKU 이름은 워크스페이스 티어에 따라 달라집니다. 이 검증에서는 `PREMIUM_ANTHROPIC_MODEL_SERVING`을 확인해야 했습니다. 샘플 쿼리가 0건을 반환한다면 SKU 이름이 티어와 맞지 않는 경우가 많습니다.
+비용이 붙는 SKU 이름은 워크스페이스 티어에 따라 달라집니다. 환경에 따라 `PREMIUM_ANTHROPIC_MODEL_SERVING`과 같은 SKU가 나타날 수 있습니다. 샘플 쿼리가 0건을 반환한다면 SKU 이름이 티어와 맞지 않는 경우가 많습니다.
 
 ```sql
 SELECT DISTINCT sku_name
